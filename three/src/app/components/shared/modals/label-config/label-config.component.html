@@ -1,0 +1,70 @@
+<div
+  class="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center"
+  (click)="onClose($event)"
+>
+  <div class="w-[500px] h-96 bg-white" (click)="$event.stopPropagation()">
+    <div
+      class="h-10 border-b border-b-black flex justify-between items-center px-2"
+    >
+      <h1>label config</h1>
+      <button
+        class="flex justify-center items-center"
+        (click)="onClose($event)"
+      >
+        <span class="material-symbols-outlined"> close </span>
+      </button>
+    </div>
+    <div class="flex justify-around h-10">
+      <button
+        *ngFor="let tab of tabs"
+        (click)="activeTab = tab"
+        [class.border-b-2]="tab === activeTab"
+        [class.border-b-blue-600]="tab === activeTab"
+        class="w-full py-2"
+      >
+        {{ tab }}
+      </button>
+    </div>
+    <div class="flex flex-col justify-between  h-[calc(24rem-5rem)] overflow-y-auto p-2 items-start gap-10">
+      <div [ngSwitch]="activeTab" class="w-full">
+        <div *ngSwitchCase="tabs[0]">nothing</div>
+        <div *ngSwitchCase="tabs[1]" class="p-4">
+          label:
+          <br />
+          <input type="text" placeholder="label" class="border border-black w-1/2 p-1" (change)="labelChange($event)" [value]="content.label" />
+        </div>
+        <div *ngSwitchCase="tabs[2]">
+          <div>
+            color:
+            <br />
+            <input type="color" class="w-1/2" (change)="colorChange($event)" [value]="view.color" />
+          </div>
+          <div>
+            width:
+            <br />
+            <input type="number" class="w-1/2 border border-black p-1" (change)="widthChange($event)" [value]="view.width" />
+          </div>
+          <div>
+            height:
+            <br />
+            <input type="number" class="w-1/2 border border-black p-1" (change)="heightChange($event)" [value]="view.height" />
+          </div>
+          <div>
+            x:
+            <br />
+            <input type="number" class="w-1/2 border border-black p-1" (change)="xChange($event)" [value]="view.x" />
+          </div>
+          <div>
+            y:
+            <br />
+            <input type="number" class="w-1/2 border border-black p-1" (change)="yChange($event)" [value]="view.y" />
+          </div>
+        </div>
+        <div *ngSwitchCase="tabs[3]">
+          nothing
+        </div>
+      </div>
+      <button class="bg-purple-600 py-2 px-10 text-white rounded-lg" (click)="submit()">save</button>
+    </div>
+  </div>
+</div>

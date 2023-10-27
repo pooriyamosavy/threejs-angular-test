@@ -1,0 +1,38 @@
+<div class="flex flex-col">
+  <div *ngFor="let accordion of accordion_items; let index = index">
+    <button
+      class="flex border p-2 justify-between w-full text-lg"
+      (click)="openAndCloseAccordion(accordion.title)"
+    >
+      <h6>
+        {{ accordion.title }}
+      </h6>
+      <i>
+        <span *ngIf="!accordion.open" class="material-symbols-outlined">
+          expand_more
+        </span>
+        <span *ngIf="accordion.open" class="material-symbols-outlined">
+          keyboard_arrow_up
+        </span>
+      </i>
+    </button>
+    <div *ngIf="accordion.items && accordion.open" class="px-2">
+      <button
+        *ngFor="let item of accordion.items"
+        class="flex gap-2 border-b w-full"
+        [class.border]="activeItem === item.title"
+        [class.border-red-600]="activeItem === item.title"
+        (click)="activateItem(item.title)"
+      >
+        <i class="scale-75">
+          <span class="material-symbols-outlined">
+            {{ item.icon }}
+          </span>
+        </i>
+        <h6>
+          {{ item.title }}
+        </h6>
+      </button>
+    </div>
+  </div>
+</div>

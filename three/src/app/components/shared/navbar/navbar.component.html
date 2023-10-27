@@ -1,0 +1,19 @@
+<div class="h-10 flex justify-start items-center px-5 border-b gap-4">
+  <button class="flex justify-center items-center" (click)="showdataStructure()">
+    <span class="material-symbols-outlined"> save </span>
+  </button>
+  <button (click)="modal = 'upload'" class="flex justify-center items-center">
+    <span class="material-symbols-outlined"> cloud_upload </span>
+  </button>
+  <button
+    (click)="modal = 'labelConfig'"
+    class="flex justify-center items-center"
+    [disabled]="!activelabel"
+  >
+    <span class="material-symbols-outlined"> manufacturing </span>
+  </button>
+  <comp-modal-uploadfile (closeEvent)="modal = null" *ngIf="modal === 'upload'">
+  </comp-modal-uploadfile>
+  <comp-modal-labelconfig (closeEvent)="modal = null" *ngIf="modal === 'labelConfig'">
+  </comp-modal-labelconfig>
+</div>
