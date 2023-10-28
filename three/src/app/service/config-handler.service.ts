@@ -76,17 +76,27 @@ export class ConfigHandlerService {
     }
   }
 
-  saveConfig({ color, height, label, width,x,y }: saveConfigParams) {
+  saveConfig({ color, height, label, width, x, y }: saveConfigParams) {
     if (this.activeLabel.value)
-        this.activeLabel.next({
-          ...this.activeLabel.value,
-          color: color,
-          h: height,
-          text: label,
-          w: width,
-          x,
-          y
-        });
+      this.activeLabel.next({
+        ...this.activeLabel.value,
+        color: color,
+        h: height,
+        text: label,
+        w: width,
+        x,
+        y,
+      });
+  }
+
+  setX_AND_Y({ x, y }: { x: number; y: number }) {
+    if (this.activeLabel.value) {
+      this.activeLabel.next({
+        ...this.activeLabel.value,
+        x,
+        y,
+      });
+    }
   }
 }
 
@@ -96,7 +106,7 @@ export type saveConfigParams = {
   width: number;
   label: string;
   x: number;
-  y: number
+  y: number;
 };
 
 export type config = {

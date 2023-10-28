@@ -11,6 +11,7 @@ import {
 })
 export class NavbarComponent {
   activelabel: activeLabel;
+  modal: string | null = null;
   constructor(
     private configHandlerService: ConfigHandlerService,
     private httpClient: HttpClient
@@ -56,7 +57,6 @@ export class NavbarComponent {
     this.httpClient.post('localhost:3000', body).subscribe((res)=>{
       console.log(res)
     })
-    
+
   }
-  modal: string | null = null;
 }
